@@ -71,6 +71,73 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Godot项目架构建议与实体创建建议" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/06/24/Godot%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E5%BB%BA%E8%AE%AE%E4%B8%8E%E5%AE%9E%E4%BD%93%E5%88%9B%E5%BB%BA%E5%BB%BA%E8%AE%AE/" class="article-date">
+  <time class="dt-published" datetime="2026-06-23T16:00:00.000Z" itemprop="datePublished">2026-06-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/06/24/Godot%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E5%BB%BA%E8%AE%AE%E4%B8%8E%E5%AE%9E%E4%BD%93%E5%88%9B%E5%BB%BA%E5%BB%BA%E8%AE%AE/">Godot项目架构建议与实体创建建议</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Godot项目架构建议与实体创建建议"><a href="#Godot项目架构建议与实体创建建议" class="headerlink" title="Godot项目架构建议与实体创建建议"></a>Godot项目架构建议与实体创建建议</h1><h2 id="项目架构建议"><a href="#项目架构建议" class="headerlink" title="项目架构建议"></a>项目架构建议</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-addons </span><br><span class="line">-assets（资源）</span><br><span class="line">-src   （源码）</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- addons</span><br><span class="line">	- art 美术</span><br><span class="line">		- characters 人物</span><br><span class="line">			- enemies</span><br><span class="line">			- npcs</span><br><span class="line">			- player</span><br><span class="line">	- ui</span><br><span class="line">		- fonts</span><br><span class="line">		- icons</span><br><span class="line">		- splash_screen</span><br><span class="line">	- world</span><br><span class="line">		- backgrounds</span><br><span class="line">		- props</span><br><span class="line">		- tilesets</span><br><span class="line">	- audio</span><br><span class="line">		- music</span><br><span class="line">		- sfx</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">- src</span><br><span class="line">	- core</span><br><span class="line">		- autoload</span><br><span class="line">		- main_game</span><br><span class="line">	- debug</span><br><span class="line">	- gameplay</span><br><span class="line">		- camera</span><br><span class="line">		- enemies</span><br><span class="line">		- interactables</span><br><span class="line">		- player</span><br><span class="line">	- levels</span><br><span class="line">		- level_objects</span><br><span class="line">			- bonfire</span><br><span class="line">			- markers</span><br><span class="line">	- resources</span><br><span class="line">		- enemy_definitions(敌人定义)</span><br><span class="line">		- item_definitions(物品定义)</span><br><span class="line">	- shaders</span><br><span class="line">	- ui</span><br></pre></td></tr></table></figure>
+
+<p>主游戏场景下(MainGame)，初始化Systems节点，协调场景切换和大的模块转换，但要注意不能让这个大模块管理节点，防止他变成一个上帝对象</p>
+<p>在主场景节点下，</p>
+<ol>
+<li>高级系统节点（管理统筹防止散落在项目各处）</li>
+<li>世界节点（关卡、实体，特效）</li>
+<li>HUD</li>
+<li>Pasue</li>
+<li>TransitionLayer</li>
+<li>DebugLayer</li>
+</ol>
+<h2 id="实体创建建议"><a href="#实体创建建议" class="headerlink" title="实体创建建议"></a>实体创建建议</h2><p>实体状态应该由状态机管理</p>
+<p>有如下一些状态：</p>
+<ul>
+<li>是否可移动</li>
+<li>是否可见</li>
+<li>是否可被攻击</li>
+<li>是否有碰撞(引擎来管理？)</li>
+</ul>
+<p>在这之下派生的类：玩家、npc、碰撞体积物品、敌人</p>
+<p>在指定状态下，不可见，不可移动，不可攻击等。</p>
+<p>状态机构建需要保持可拓展性，以及解耦性。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/06/24/Godot%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E5%BB%BA%E8%AE%AE%E4%B8%8E%E5%AE%9E%E4%BD%93%E5%88%9B%E5%BB%BA%E5%BB%BA%E8%AE%AE/" data-id="cuidWEmic1GASoh0l6bx9S4ek" data-title="Godot项目架构建议与实体创建建议" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag">游戏开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-节奏游戏框架理解" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2026/06/18/%E8%8A%82%E5%A5%8F%E6%B8%B8%E6%88%8F%E6%A1%86%E6%9E%B6%E7%90%86%E8%A7%A3/" class="article-date">
@@ -112,7 +179,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/06/18/%E8%8A%82%E5%A5%8F%E6%B8%B8%E6%88%8F%E6%A1%86%E6%9E%B6%E7%90%86%E8%A7%A3/" data-id="cuidtJXUNp9oL920Y0Wp-hxqm" data-title="节奏游戏框架理解" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/06/18/%E8%8A%82%E5%A5%8F%E6%B8%B8%E6%88%8F%E6%A1%86%E6%9E%B6%E7%90%86%E8%A7%A3/" data-id="cuidCHVuUljBJRSNTMkNOufEP" data-title="节奏游戏框架理解" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -237,7 +304,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/06/17/%E4%B8%80%E8%88%AC%E7%9A%84%E6%A6%82%E5%BF%B5/" data-id="cuidpFl9Ct9vvCJa5Xk-_5UFW" data-title="一般的概念" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/06/17/%E4%B8%80%E8%88%AC%E7%9A%84%E6%A6%82%E5%BF%B5/" data-id="cuidrpy4odiMbd8r9fdGB-crP" data-title="一般的概念" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -303,7 +370,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/06/16/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/" data-id="cuidgqXJpx2dpHO0YKWrzD0NZ" data-title="百日博客计划" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/06/16/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/" data-id="cuid2rnlyzApNLKL2yS0W9xh7" data-title="百日博客计划" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -340,7 +407,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/%E5%93%B2%E5%AD%A6/" style="font-size: 10px;">哲学</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 10px;">游戏开发</a> <a href="/tags/%E8%AE%A1%E5%88%92/" style="font-size: 10px;">计划</a>
+      <a href="/tags/%E5%93%B2%E5%AD%A6/" style="font-size: 10px;">哲学</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 20px;">游戏开发</a> <a href="/tags/%E8%AE%A1%E5%88%92/" style="font-size: 10px;">计划</a>
     </div>
   </div>
 
@@ -360,6 +427,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2026/06/24/Godot%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E5%BB%BA%E8%AE%AE%E4%B8%8E%E5%AE%9E%E4%BD%93%E5%88%9B%E5%BB%BA%E5%BB%BA%E8%AE%AE/">Godot项目架构建议与实体创建建议</a>
+          </li>
         
           <li>
             <a href="/2026/06/18/%E8%8A%82%E5%A5%8F%E6%B8%B8%E6%88%8F%E6%A1%86%E6%9E%B6%E7%90%86%E8%A7%A3/">节奏游戏框架理解</a>

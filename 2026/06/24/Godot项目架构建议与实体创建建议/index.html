@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Godot项目架构建议与实体创建建议 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Godot项目架构建议与实体创建建议项目架构建议123-addons -assets（资源）-src   （源码）  1234567891011121314151617- addons	- art 美术		- characters 人物			- enemies			- npcs			- player	- ui		- fonts		- icons		- splash_screen	- world">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Godot项目架构建议与实体创建建议">
+<meta property="og:url" content="http://example.com/2026/06/24/Godot%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E5%BB%BA%E8%AE%AE%E4%B8%8E%E5%AE%9E%E4%BD%93%E5%88%9B%E5%BB%BA%E5%BB%BA%E8%AE%AE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Godot项目架构建议与实体创建建议项目架构建议123-addons -assets（资源）-src   （源码）  1234567891011121314151617- addons	- art 美术		- characters 人物			- enemies			- npcs			- player	- ui		- fonts		- icons		- splash_screen	- world">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-06-23T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-06-25T14:24:10.932Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="游戏开发">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Godot项目架构建议与实体创建建议" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/06/24/Godot%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E5%BB%BA%E8%AE%AE%E4%B8%8E%E5%AE%9E%E4%BD%93%E5%88%9B%E5%BB%BA%E5%BB%BA%E8%AE%AE/" class="article-date">
+  <time class="dt-published" datetime="2026-06-23T16:00:00.000Z" itemprop="datePublished">2026-06-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Godot项目架构建议与实体创建建议
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Godot项目架构建议与实体创建建议"><a href="#Godot项目架构建议与实体创建建议" class="headerlink" title="Godot项目架构建议与实体创建建议"></a>Godot项目架构建议与实体创建建议</h1><h2 id="项目架构建议"><a href="#项目架构建议" class="headerlink" title="项目架构建议"></a>项目架构建议</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-addons </span><br><span class="line">-assets（资源）</span><br><span class="line">-src   （源码）</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">- addons</span><br><span class="line">	- art 美术</span><br><span class="line">		- characters 人物</span><br><span class="line">			- enemies</span><br><span class="line">			- npcs</span><br><span class="line">			- player</span><br><span class="line">	- ui</span><br><span class="line">		- fonts</span><br><span class="line">		- icons</span><br><span class="line">		- splash_screen</span><br><span class="line">	- world</span><br><span class="line">		- backgrounds</span><br><span class="line">		- props</span><br><span class="line">		- tilesets</span><br><span class="line">	- audio</span><br><span class="line">		- music</span><br><span class="line">		- sfx</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">- src</span><br><span class="line">	- core</span><br><span class="line">		- autoload</span><br><span class="line">		- main_game</span><br><span class="line">	- debug</span><br><span class="line">	- gameplay</span><br><span class="line">		- camera</span><br><span class="line">		- enemies</span><br><span class="line">		- interactables</span><br><span class="line">		- player</span><br><span class="line">	- levels</span><br><span class="line">		- level_objects</span><br><span class="line">			- bonfire</span><br><span class="line">			- markers</span><br><span class="line">	- resources</span><br><span class="line">		- enemy_definitions(敌人定义)</span><br><span class="line">		- item_definitions(物品定义)</span><br><span class="line">	- shaders</span><br><span class="line">	- ui</span><br></pre></td></tr></table></figure>
+
+<p>主游戏场景下(MainGame)，初始化Systems节点，协调场景切换和大的模块转换，但要注意不能让这个大模块管理节点，防止他变成一个上帝对象</p>
+<p>在主场景节点下，</p>
+<ol>
+<li>高级系统节点（管理统筹防止散落在项目各处）</li>
+<li>世界节点（关卡、实体，特效）</li>
+<li>HUD</li>
+<li>Pasue</li>
+<li>TransitionLayer</li>
+<li>DebugLayer</li>
+</ol>
+<h2 id="实体创建建议"><a href="#实体创建建议" class="headerlink" title="实体创建建议"></a>实体创建建议</h2><p>实体状态应该由状态机管理</p>
+<p>有如下一些状态：</p>
+<ul>
+<li>是否可移动</li>
+<li>是否可见</li>
+<li>是否可被攻击</li>
+<li>是否有碰撞(引擎来管理？)</li>
+</ul>
+<p>在这之下派生的类：玩家、npc、碰撞体积物品、敌人</p>
+<p>在指定状态下，不可见，不可移动，不可攻击等。</p>
+<p>状态机构建需要保持可拓展性，以及解耦性。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/06/24/Godot%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E5%BB%BA%E8%AE%AE%E4%B8%8E%E5%AE%9E%E4%BD%93%E5%88%9B%E5%BB%BA%E5%BB%BA%E8%AE%AE/" data-id="cuidWEmic1GASoh0l6bx9S4ek" data-title="Godot项目架构建议与实体创建建议" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag">游戏开发</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2026/06/18/%E8%8A%82%E5%A5%8F%E6%B8%B8%E6%88%8F%E6%A1%86%E6%9E%B6%E7%90%86%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">节奏游戏框架理解</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%93%B2%E5%AD%A6/" rel="tag">哲学</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" rel="tag">游戏开发</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E5%88%92/" rel="tag">计划</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/%E5%93%B2%E5%AD%A6/" style="font-size: 10px;">哲学</a> <a href="/tags/%E6%B8%B8%E6%88%8F%E5%BC%80%E5%8F%91/" style="font-size: 20px;">游戏开发</a> <a href="/tags/%E8%AE%A1%E5%88%92/" style="font-size: 10px;">计划</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/06/">June 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/06/24/Godot%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E5%BB%BA%E8%AE%AE%E4%B8%8E%E5%AE%9E%E4%BD%93%E5%88%9B%E5%BB%BA%E5%BB%BA%E8%AE%AE/">Godot项目架构建议与实体创建建议</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/18/%E8%8A%82%E5%A5%8F%E6%B8%B8%E6%88%8F%E6%A1%86%E6%9E%B6%E7%90%86%E8%A7%A3/">节奏游戏框架理解</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/17/%E4%B8%80%E8%88%AC%E7%9A%84%E6%A6%82%E5%BF%B5/">一般的概念</a>
+          </li>
+        
+          <li>
+            <a href="/2026/06/16/%E7%99%BE%E6%97%A5%E5%8D%9A%E5%AE%A2%E8%AE%A1%E5%88%92/">百日博客计划</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
